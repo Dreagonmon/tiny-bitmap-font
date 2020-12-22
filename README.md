@@ -86,3 +86,7 @@ python3 git-hook/check-pbm-format.py
 这样可以保证字和字之间有间隔，不会连在一起。
 
 由于字体较小，为了提高可读性，宁可缺少笔画，也要减少"黑块"的数量。
+
+# Additional License
+Using [Source Han Serif](https://github.com/adobe-fonts/source-han-serif/) font as base image, it using SIL Open Font License 1.1.
+使用[思源字体](https://github.com/adobe-fonts/source-han-serif/)初始化了字体源码，本项目是在此基础上修改的，故生成的字体本身遵循SIL Open Font协议。

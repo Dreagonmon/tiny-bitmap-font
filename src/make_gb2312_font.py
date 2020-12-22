@@ -20,6 +20,23 @@ def interrupt(msg=None):
         print(msg)
     sys.exit(1)
 
+def source_from_hzk(size=8):
+    gb2312_folder = os.path.join(env.ROOT_FOLDER, "src", str(size), "gb2312")
+    hzk_font_file_path = os.path.join(env.ROOT_FOLDER, "build", "SourceHanSerif8x8.fnt")
+    hzk_font_file = open(hzk_font_file_path, "rb")
+    data_size = math.ceil(size/8) * size
+    for area, posi in coding.GB2312.all_available_pos():
+        area_folder = os.path.join(gb2312_folder, "{:02d}".format(area))
+        if not os.path.exists(area_folder):
+            os.makedirs(area_folder)
+        posi_file = os.path.join(area_folder, "{:02d}.pbm".format(posi))
+        data_offset = coding.GB2312.to_dict_index((area, posi)) * data_size
+        hzk_font_file.seek(data_offset, os.SEEK_SET)
+        font_data = hzk_font_file.read(data_size)
+        char_str = coding.GB2312.to_bytes((area, posi)).decode("gb2312")
+        with open(posi_file, "wb") as f:
+            pbm.make_image(f, size, size, font_data, "P1", "gb2312 {} {} {}".format(area, posi, char_str))
+
 def build_gb2312_hzk(size=8):
     gb2312_folder = os.path.join(env.ROOT_FOLDER, "src", str(size), "gb2312")
     data_size = math.ceil(size/8) * size
@@ -63,11 +80,12 @@ def build_gb2312_hzk(size=8):
     with open(out_path, "wb") as f:
         f.write(font_file_data)
     print("Font file located at: {}".format(out_path))
-    if preview != None:
+    if _support_pil:
         prev_path = os.path.join(out_folder, "TinyBitmap-{}x{}.bmp".format(size, size))
         preview.save(prev_path)
         print("Preview image located at: {}".format(prev_path))
 
 if __name__ == "__main__":
+    # source_from_hzk(8)
     build_gb2312_hzk(8)
     pass
