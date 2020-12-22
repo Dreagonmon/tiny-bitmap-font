@@ -5,6 +5,6 @@ ROOT_FOLDER = os.path.abspath(os.path.join(_env_script_folder, '..'))
 
 def ensure_import_path():
     # sys.path.append(_env_script_folder)
-    # sys.path.append(os.path.join(_this_script_folder, "..", "ssd1306desktop"))
+    sys.path.append(os.path.join(ROOT_FOLDER, "src"))
     # add more lib path...
     pass
