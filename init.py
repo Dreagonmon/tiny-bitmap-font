@@ -8,5 +8,6 @@ HOOK_FOLDER = os.path.join(_this_script_folder, "git-hook")
 HOOK_TARGET_FOLDER = os.path.join(_this_script_folder, ".git", "hooks")
 
 if __name__ == "__main__":
-    run([PYTHON, "-m", "pip", "install", "gitpython"])
+    run([PYTHON, "-m", "pip", "install", "gitpython", "--user"])
+    run([PYTHON, "-m", "pip", "install", "pillow", "--user"])
     shutil.copy2(os.path.join(HOOK_FOLDER, "pre-commit"), HOOK_TARGET_FOLDER)
