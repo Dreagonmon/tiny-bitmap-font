@@ -8,4 +8,8 @@ import env
 env.ensure_import_path()
 
 # import
+import coding, pbm
+
+def init_src():
+    pass
 
