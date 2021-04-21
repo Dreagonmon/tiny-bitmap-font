@@ -22,7 +22,7 @@ def interrupt(msg=None):
 
 def source_from_hzk(size=8):
     gb2312_folder = os.path.join(env.ROOT_FOLDER, "src", str(size), "gb2312")
-    hzk_font_file_path = os.path.join(env.ROOT_FOLDER, "build", "SourceHanSerif8x8.fnt")
+    hzk_font_file_path = os.path.join(env.ROOT_FOLDER, "build", "guanzhi8x8.fnt")
     hzk_font_file = open(hzk_font_file_path, "rb")
     data_size = math.ceil(size/8) * size
     for area, posi in coding.GB2312.all_available_pos():
